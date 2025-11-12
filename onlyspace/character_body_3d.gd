@@ -2,31 +2,36 @@ extends CharacterBody3D
 
 var Gravity = 10
 @onready var Camera = $Node3D
-const  jumppower = 20
+const  jumppower = 8
 var cameraxrotation = 0
 var camerayrotation = 0 
 
 func _ready() -> void:
+	print("test")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	cameraxrotation = self.rotation_degrees.x
 	camerayrotation = Camera.rotation.y
 func _physics_process(delta: float) -> void:
-	self.velocity.y -= 60 * delta
+	var sprinting = 1
+	if Input.is_action_pressed("sprint"):
+		sprinting = 2
+
+	self.velocity.y -=10* delta
 	var leftright = Input.get_axis("left","right")
 	var forwardbackward = Input.get_axis("forward","backwards")
 	var direction = Vector3(leftright,0,forwardbackward)
 	if direction.length() > 1:
 		direction.normalized()
 	direction = direction.rotated(Vector3.UP,self.rotation.y)
-	self.velocity.z = direction.z * 500 *delta
-	self.velocity.x = direction.x * 500 *delta
+	self.velocity.z = direction.z * 500 *delta *sprinting
+	self.velocity.x = direction.x * 500 *delta * sprinting
 	
 	
 	
 	
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		self.velocity.y = jumppower
 
 

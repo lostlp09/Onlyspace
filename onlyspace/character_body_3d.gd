@@ -16,20 +16,21 @@ func _physics_process(delta: float) -> void:
 	var sprinting = 1
 	if Input.is_action_pressed("sprint"):
 		sprinting = 2
-
-	self.velocity.y -=10* delta
+	if Input.is_action_pressed("slow"):
+		Engine.time_scale = 0.5
+	else:
+		Engine.time_scale = 1
+	self.velocity.y -=10* delta 
 	var leftright = Input.get_axis("left","right")
 	var forwardbackward = Input.get_axis("forward","backwards")
 	var direction = Vector3(leftright,0,forwardbackward)
 	if direction.length() > 1:
 		direction.normalized()
 	direction = direction.rotated(Vector3.UP,self.rotation.y)
-	self.velocity.z = direction.z * 500 *delta *sprinting
-	self.velocity.x = direction.x * 500 *delta * sprinting
+	self.velocity.z = direction.z * 500 *delta *sprinting 
+	self.velocity.x = direction.x * 500 *delta * sprinting 
 	
-	
-	
-	
+
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		self.velocity.y = jumppower

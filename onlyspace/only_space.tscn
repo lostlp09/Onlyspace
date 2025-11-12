@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
+[ext_resource type="PackedScene" uid="uid://3eubflmjobrk" path="res://running_(1).tscn" id="2_6u3vt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5x22"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,8 +20,6 @@ glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m8ueq"]
 height = 1.77207
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ny3u2"]
 
 [node name="OnlySpace" type="Node3D"]
 
@@ -41,15 +40,14 @@ transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, 0, 0, 0)
 script = ExtResource("1_e5x22")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70398, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285193, 1.35844, 0)
 shape = SubResource("CapsuleShape3D_m8ueq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82958, 0)
-mesh = SubResource("CapsuleMesh_ny3u2")
 
 [node name="Node3D" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159825, 1.85656, -0.0148506)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
 transform = Transform3D(1.00562, 0, 0, 0, 1.00562, 0, 0, 0, 1.00562, 0, 0.711579, 2.72704)
+
+[node name="Running (1)" parent="CharacterBody3D" instance=ExtResource("2_6u3vt")]
+transform = Transform3D(-1.00432, 0, -0.0511401, 0, 1.00562, 0, 0.0511401, 0, -1.00432, -0.284821, 0.555446, -0.00282759)

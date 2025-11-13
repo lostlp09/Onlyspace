@@ -5,8 +5,11 @@ var Gravity = 10
 const  jumppower = 8
 var cameraxrotation = 0
 var camerayrotation = 0 
+var jump = false
+@onready var charartermesh:AnimationPlayer = $AuxScene.get_node("AnimationPlayer")
 
 func _ready() -> void:
+	charartermesh.play("Idle(1)0")
 	print("test")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -29,10 +32,18 @@ func _physics_process(delta: float) -> void:
 	direction = direction.rotated(Vector3.UP,self.rotation.y)
 	self.velocity.z = direction.z * 500 *delta *sprinting 
 	self.velocity.x = direction.x * 500 *delta * sprinting 
-	
+	if is_on_floor():
+		jump = false
+	if (leftright != 0 or forwardbackward != 0) and jump == false:
+		print("hi")
+		charartermesh.play("Running(1)1")
 
+	elif jump == false:
+		charartermesh.play("Idle(1)0")
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		charartermesh.play("mixamo_com")
+		jump = true	
 		self.velocity.y = jumppower
 
 

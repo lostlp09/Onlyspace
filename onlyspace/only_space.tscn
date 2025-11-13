@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
-[ext_resource type="PackedScene" uid="uid://3eubflmjobrk" path="res://running_(1).tscn" id="2_6u3vt"]
+[ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5x22"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape3D_m8ueq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159825, 1.85656, -0.0148506)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
-transform = Transform3D(1.00562, 0, 0, 0, 1.00562, 0, 0, 0, 1.00562, 0, 0.711579, 2.72704)
+transform = Transform3D(1.00562, 0, 0, 0, 1.00562, 0, 0, 0, 1.00562, 0, -0.033638, 1.65481)
 
-[node name="Running (1)" parent="CharacterBody3D" instance=ExtResource("2_6u3vt")]
-transform = Transform3D(-1.00432, 0, -0.0511401, 0, 1.00562, 0, 0.0511401, 0, -1.00432, -0.284821, 0.555446, -0.00282759)
+[node name="AuxScene" parent="CharacterBody3D" instance=ExtResource("2_6u3vt")]
+transform = Transform3D(-0.0020107, 0, 4.65774e-05, 0, 0.00201124, 0, -4.65774e-05, 0, -0.0020107, -0.274243, 1.19767, -1.16433e-05)

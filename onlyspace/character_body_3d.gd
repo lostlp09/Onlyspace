@@ -6,16 +6,22 @@ const  jumppower = 8
 var cameraxrotation = 0
 var camerayrotation = 0 
 var jump = false
+var onfloor = true
 @onready var charartermesh:AnimationPlayer = $AuxScene.get_node("AnimationPlayer")
 
 func _ready() -> void:
-	charartermesh.play("Idle(1)0")
-	print("test")
+
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	cameraxrotation = self.rotation_degrees.x
 	camerayrotation = Camera.rotation.y
 func _physics_process(delta: float) -> void:
+	if jump == false and not is_on_floor():
+		onfloor = false
+		print(charartermesh.current_animation)
+		charartermesh.play("falling")
+	if jump == true and charartermesh.current_animation == "":
+		charartermesh.play("falling")
 	var sprinting = 1
 	if Input.is_action_pressed("sprint"):
 		sprinting = 2
@@ -33,16 +39,19 @@ func _physics_process(delta: float) -> void:
 	self.velocity.z = direction.z * 500 *delta *sprinting 
 	self.velocity.x = direction.x * 500 *delta * sprinting 
 	if is_on_floor():
+		onfloor = true
 		jump = false
-	if (leftright != 0 or forwardbackward != 0) and jump == false:
+	if (leftright != 0 or forwardbackward != 0) and jump == false and onfloor == true:
 		print("hi")
 		charartermesh.play("Running(1)1")
 
-	elif jump == false:
+	elif jump == false and is_on_floor():
 		charartermesh.play("Idle(1)0")
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		charartermesh.play("mixamo_com")
+		
+		charartermesh.seek(0.23)
 		jump = true	
 		self.velocity.y = jumppower
 

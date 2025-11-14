@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=11 format=3 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
@@ -22,6 +22,11 @@ glow_enabled = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m8ueq"]
 height = 1.77207
 
+[sub_resource type="BoxMesh" id="BoxMesh_m8ueq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ny3u2"]
+size = Vector3(1, 0.991333, 1.02429)
+
 [node name="OnlySpace" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -36,7 +41,7 @@ transform = Transform3D(69.4319, 0, 0, 0, 1.02188, 0, 0, 0, 36.3017, 0, 0, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_6u3vt")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, 0, 0, 0)
 script = ExtResource("1_e5x22")
 
@@ -68,3 +73,15 @@ offset_bottom = 305.0
 theme_override_font_sizes/font_size = 121
 text = "timer"
 script = ExtResource("3_m8ueq")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.430054, 0, 0, 0, 1, 0, 0.691719, -8.32206)
+use_collision = true
+mesh = SubResource("BoxMesh_m8ueq")
+
+[node name="Area3D" type="Area3D" parent="CSGMesh3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0120636, 0.0151165, -0.00896168)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00433373, 0.012146)
+shape = SubResource("BoxShape3D_ny3u2")

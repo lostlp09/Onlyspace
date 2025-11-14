@@ -15,9 +15,17 @@ run/main_scene="uid://duffhw7kruvam"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[global_group]
+
+player=""
 
 [input]
 

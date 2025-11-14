@@ -7,6 +7,7 @@ var cameraxrotation = 0
 var camerayrotation = 0 
 var jump = false
 var onfloor = true
+@onready var area = $"../CSGMesh3D2/Area3D"
 @onready var charartermesh:AnimationPlayer = $AuxScene.get_node("AnimationPlayer")
 
 func _ready() -> void:
@@ -16,9 +17,16 @@ func _ready() -> void:
 	cameraxrotation = self.rotation_degrees.x
 	camerayrotation = Camera.rotation.y
 func _physics_process(delta: float) -> void:
+	if area.has_overlapping_bodies():
+		
+			for i in area.get_overlapping_bodies():
+				print(i)
+				if i == self:
+					self.velocity.y = 20
+	
 	if jump == false and not is_on_floor():
 		onfloor = false
-		print(charartermesh.current_animation)
+
 		charartermesh.play("falling")
 	if jump == true and charartermesh.current_animation == "":
 		charartermesh.play("falling")
@@ -42,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		onfloor = true
 		jump = false
 	if (leftright != 0 or forwardbackward != 0) and jump == false and onfloor == true:
-		print("hi")
 		charartermesh.play("Running(1)1")
 
 	elif jump == false and is_on_floor():

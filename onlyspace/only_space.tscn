@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=9 format=3 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
+[ext_resource type="Script" uid="uid://bl80qiei345f2" path="res://timer.gd" id="3_m8ueq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5x22"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -51,3 +52,19 @@ transform = Transform3D(1.00562, 0, 0, 0, 1.00562, 0, 0, 0, 1.00562, 0, -0.03363
 
 [node name="AuxScene" parent="CharacterBody3D" instance=ExtResource("2_6u3vt")]
 transform = Transform3D(-0.0020107, 0, 4.65774e-05, 0, 0.00201124, 0, -4.65774e-05, 0, -0.0020107, -0.274243, 1.19767, -1.16433e-05)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 210.0
+offset_bottom = 113.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = -31.0
+offset_right = 1021.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 121
+text = "timer"
+script = ExtResource("3_m8ueq")

@@ -8,7 +8,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	time += delta
-	round(time)
-	self.text = "%0.4f" % (time / 60.0)
-	
+	var timeasint = int(time)
+	var oldtest = self.text
+	var seconds = timeasint % 60
+	var min = (timeasint/60) % 60
+	var hour =(timeasint/3600) 
+	self.text = "%02d:%02d:%02d" % [hour, min, seconds]

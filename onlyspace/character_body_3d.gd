@@ -7,7 +7,7 @@ var cameraxrotation = 0
 var camerayrotation = 0 
 var jump = false
 var onfloor = true
-@onready var area = $"../CSGMesh3D2/Area3D"
+@onready var area = $Area3D
 @onready var charartermesh:AnimationPlayer = $AuxScene.get_node("AnimationPlayer")
 
 func _ready() -> void:
@@ -17,13 +17,8 @@ func _ready() -> void:
 	cameraxrotation = self.rotation_degrees.x
 	camerayrotation = Camera.rotation.y
 func _physics_process(delta: float) -> void:
-	if area.has_overlapping_bodies():
-		
-			for i in area.get_overlapping_bodies():
-
-				if i == self and is_on_floor():
-					print(i)
-					self.velocity.y = 20
+	if area.has_overlapping_areas() and is_on_floor():
+		self.velocity.y = 20
 	
 	if jump == false and not is_on_floor():
 		onfloor = false

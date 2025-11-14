@@ -20,8 +20,9 @@ func _physics_process(delta: float) -> void:
 	if area.has_overlapping_bodies():
 		
 			for i in area.get_overlapping_bodies():
-				print(i)
-				if i == self:
+
+				if i == self and is_on_floor():
+					print(i)
 					self.velocity.y = 20
 	
 	if jump == false and not is_on_floor():
@@ -71,6 +72,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 
 		cameraxrotation -= event.relative.y * 0.1
-		cameraxrotation = clamp(cameraxrotation,-44.5,32)
+		cameraxrotation = clamp(cameraxrotation,-44.5,80)
 		Camera.rotation_degrees.x = cameraxrotation
 		self.rotation.y -= event.relative.x *0.001

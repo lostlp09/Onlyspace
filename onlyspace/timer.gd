@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
     var seconds = timeasint % 60
     var min = (timeasint/60) % 60
     var hour =(timeasint/3600) 
-    self.text = "%02d:%02d:%02d" % [hour, min,seconds]
+    self.text = "%02d:%02d:%02d" % [hour,min,seconds]

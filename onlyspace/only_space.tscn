@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=28 format=4 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://0s6jfewwkntq" path="res://toy_cartoon_planets_0.png" id="4_wahch"]
 [ext_resource type="Texture2D" uid="uid://cokapjwmhs3ii" path="res://toy_cartoon_planets_1.png" id="5_6lxdm"]
 [ext_resource type="PackedScene" uid="uid://b3571kn3lsn2c" path="res://objects/satelite.tscn" id="6_6lxdm"]
+[ext_resource type="PackedScene" uid="uid://bkvgmmai2bcu1" path="res://hammer.tscn" id="7_aey5m"]
+[ext_resource type="Script" uid="uid://dffsw3pyfcqy6" path="res://rotationtest.gd" id="8_nom21"]
 
 [sub_resource type="Environment" id="Environment_6lxdm"]
 background_mode = 1
@@ -181,6 +183,12 @@ shadow_mesh = SubResource("ArrayMesh_onfdc")
 [sub_resource type="SphereShape3D" id="SphereShape3D_av0e7"]
 radius = 0.985166
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_aey5m"]
+size = Vector3(1.14124, 10.9038, 0.658817)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nom21"]
+size = Vector3(1.22056, 1.95853, 4.01381)
+
 [node name="OnlySpace" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -282,4 +290,34 @@ transform = Transform3D(0.367, 0, 0, 0, 0.367, 0, 0, 0, 0.333, -0.355882, 0, -0.
 shape = SubResource("SphereShape3D_av0e7")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("6_6lxdm")]
-transform = Transform3D(0.374833, 0.927092, 0, -0.606589, 0.24525, -0.756242, -0.701106, 0.283464, 0.654292, -23.1812, -3.12595, -28.3429)
+transform = Transform3D(0.552751, 0.820411, 0.146256, 0.814851, -0.568865, 0.111401, 0.174595, 0.0575996, -0.982954, 0.630684, -11.0654, -28.3429)
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(0.0717936, 0.289741, 0.954409, 0.814851, -0.568865, 0.111401, 0.575207, 0.769703, -0.276937, 7.44752, -6.49369, -37.4932)
+
+[node name="Sketchfab_Scene3" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.36768, -0.358646, 0.858012, 0.814851, -0.568865, 0.111401, 0.448139, 0.740112, 0.501404, 19.5986, -2.20789, -37.4932)
+
+[node name="Sketchfab_Scene4" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.36768, -0.358646, 0.858012, 0.913745, 0.0321772, 0.405013, -0.172865, 0.932919, 0.31588, 32.4394, 3.10165, -22.4285)
+
+[node name="hammer" parent="." instance=ExtResource("7_aey5m")]
+transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, -5.23773, -11.4798, -2.821)
+script = ExtResource("8_nom21")
+
+[node name="Area3D" type="Area3D" parent="hammer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37074, -12.6537, 0.181413)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hammer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999465, 0.0328063, 0, -0.0328063, 0.999465, 2.33162, 7.75133, -0.191013)
+shape = SubResource("BoxShape3D_aey5m")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hammer/Area3D"]
+transform = Transform3D(0.999725, 0.0234744, 0.0002997, -0.0234636, 0.999519, -0.0202523, -0.000774959, 0.0202397, 0.999795, 2.21189, 3.41945, -0.134809)
+shape = SubResource("BoxShape3D_nom21")
+
+[node name="Node3D" type="Node3D" parent="hammer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
+
+[connection signal="area_entered" from="hammer/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="hammer/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]

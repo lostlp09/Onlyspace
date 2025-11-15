@@ -1,19 +1,17 @@
-[gd_scene load_steps=25 format=4 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=24 format=4 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
 [ext_resource type="Script" uid="uid://bl80qiei345f2" path="res://timer.gd" id="3_m8ueq"]
 [ext_resource type="Texture2D" uid="uid://0s6jfewwkntq" path="res://toy_cartoon_planets_0.png" id="4_wahch"]
 [ext_resource type="Texture2D" uid="uid://cokapjwmhs3ii" path="res://toy_cartoon_planets_1.png" id="5_6lxdm"]
-[ext_resource type="PackedScene" uid="uid://bivyvihptcy84" path="res://basketball.tscn" id="6_6lxdm"]
+[ext_resource type="PackedScene" uid="uid://b3571kn3lsn2c" path="res://objects/satelite.tscn" id="6_6lxdm"]
 
 [sub_resource type="Environment" id="Environment_6lxdm"]
 background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.98
-
-[sub_resource type="BoxMesh" id="BoxMesh_6u3vt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m8ueq"]
 radius = 0.175311
@@ -193,11 +191,6 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 light_energy = 4.928
 shadow_enabled = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(69.4319, 0, 0, 0, 1.02188, 0, 0, 0, 36.3017, 0, 0, -53.8453)
-use_collision = true
-mesh = SubResource("BoxMesh_6u3vt")
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, 0, 0, 0)
 script = ExtResource("1_e5x22")
@@ -274,9 +267,6 @@ transform = Transform3D(6.405, 0, 0, 0, 6.405, 0, 0, 0, 6.405, 0, -583.47, 0)
 mesh = SubResource("ArrayMesh_6lxdm")
 skeleton = NodePath("")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_6lxdm")]
-transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -3.65243, -8.31883, -23.0418)
-
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
 mass = 0.08
@@ -290,3 +280,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(0.367, 0, 0, 0, 0.367, 0, 0, 0, 0.333, -0.355882, 0, -0.0296097)
 shape = SubResource("SphereShape3D_av0e7")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(0.374833, 0.927092, 0, -0.606589, 0.24525, -0.756242, -0.701106, 0.283464, 0.654292, -23.1812, -3.12595, -28.3429)

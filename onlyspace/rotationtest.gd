@@ -1,6 +1,7 @@
 extends Node3D
 
 var number = -1
+@export var angle = 90
 var time = 0.03
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,5 +18,5 @@ func rotateobject():
 	while true:
 
 		number += 1
-		self.rotation_degrees.x= sin(number * time) *90
+		self.rotation_degrees.x= sin(number * time) *angle
 		await  get_tree().create_timer(0.01).timeout

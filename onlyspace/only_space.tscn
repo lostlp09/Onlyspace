@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=36 format=4 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cyn6yhlo23vom" path="res://objects/arcade.tscn" id="12_06bb0"]
 [ext_resource type="PackedScene" uid="uid://cf33j3en6ay5h" path="res://pipe.tscn" id="13_t8s3x"]
 [ext_resource type="PackedScene" uid="uid://k86dn52pij0x" path="res://addons/godot_super-wakatime/trampoline.glb" id="14_cpmcf"]
+[ext_resource type="PackedScene" uid="uid://crdcetr8uml30" path="res://trash.tscn" id="15_8bmrq"]
 
 [sub_resource type="Environment" id="Environment_6lxdm"]
 background_mode = 1
@@ -210,7 +211,7 @@ light_energy = 4.928
 shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, 23.239, 101.094, -4.81563)
+transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, -19.7575, 101.094, -40.3814)
 script = ExtResource("1_e5x22")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -336,17 +337,23 @@ transform = Transform3D(0.275275, -0.917816, -0.28607, 0.0674039, 0.31526, -0.94
 [node name="Sketchfab_Scene34" parent="." instance=ExtResource("10_uf1co")]
 transform = Transform3D(0.275275, -0.917816, -0.28607, 0.0674039, 0.31526, -0.946608, 0.959, 0.241296, 0.148648, 34.8678, 95.8089, 9.48684)
 
+[node name="Sketchfab_Scene46" parent="." instance=ExtResource("10_uf1co")]
+transform = Transform3D(0.275275, -0.917816, -0.28607, 0.0674039, 0.31526, -0.946608, 0.959, 0.241296, 0.148648, -0.0589957, 132.367, -21.6179)
+
 [node name="Sketchfab_Scene33" parent="." instance=ExtResource("10_uf1co")]
 transform = Transform3D(0.281135, -0.876235, -0.391374, 0.0358135, 0.417118, -0.908146, 0.959, 0.241296, 0.148648, 45.1516, 86.704, -0.534839)
 
 [node name="Sketchfab_Scene32" parent="." instance=ExtResource("10_uf1co")]
-transform = Transform3D(-2.0101, -5.1175, 0.212313, 0.00603212, -0.291608, -6.75369, 2.33364, -4.40724, 0.200334, 26.5857, 98.1115, 2.32389)
+transform = Transform3D(-0.861471, -5.1175, 0.031565, 0.00258527, -0.291616, -1.00406, 1.00013, -4.40724, 0.0297842, 26.5857, 99.1508, 2.32389)
 
 [node name="Sketchfab_Scene8" parent="." instance=ExtResource("10_uf1co")]
 transform = Transform3D(1, 0, 0, 0, 0.229965, 0.973199, 0, -0.973199, 0.229965, -9.90098, 19.7674, 11.2988)
 
 [node name="Sketchfab_Scene10" parent="." instance=ExtResource("11_av0e7")]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -6.34778, 27.6043, -27.8701)
+
+[node name="Sketchfab_Scene53" parent="." instance=ExtResource("11_av0e7")]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 20.1835, 146.4, -27.8701)
 
 [node name="Sketchfab_Scene17" parent="." instance=ExtResource("11_av0e7")]
 transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -1.45025, 81.6292, 17.8385)
@@ -429,6 +436,66 @@ shape = SubResource("CylinderShape3D_8bmrq")
 transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
 shape = SubResource("CylinderShape3D_8bmrq")
 
+[node name="Sketchfab_Scene54" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 36.1957, 146.664, -33.9605)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene54"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene54/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene54" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene54/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Sketchfab_Scene55" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 44.6118, 158.435, -29.241)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene55"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene55/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene55" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene55/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Sketchfab_Scene56" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 44.6118, 174.165, -17.9871)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene56"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene56/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene56" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene56/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Sketchfab_Scene36" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -16.0361, 102.831, -56.8577)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene36"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene36/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene36" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene36/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
 [node name="Sketchfab_Scene27" parent="." instance=ExtResource("6_6lxdm")]
 transform = Transform3D(0.947551, -0.319604, 0, 0.319604, 0.947551, 0, 0, 0, 1, -7.16601, 82.0188, -33.948)
 
@@ -438,12 +505,28 @@ transform = Transform3D(-0.187874, 0.063369, 0.980147, 0.955044, -0.221219, 0.19
 [node name="Sketchfab_Scene29" parent="." instance=ExtResource("6_6lxdm")]
 transform = Transform3D(-0.422462, 0.124265, 0.897822, 0.876258, -0.197252, 0.439617, 0.231726, 0.972445, -0.0255571, 44.7499, 79.471, -23.7206)
 
+[node name="Sketchfab_Scene35" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.333809, -0.906465, 0.258636, 0.911622, -0.380241, -0.156081, 0.239826, 0.183677, 0.953282, -18.4557, 100.224, -47.3245)
+
+[node name="Sketchfab_Scene37" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.333809, -0.906465, 0.258636, 0.911622, -0.380241, -0.156081, 0.239826, 0.183677, 0.953282, 6.94443, 122.795, -57.4237)
+
+[node name="Sketchfab_Scene44" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.333809, -0.906465, 0.258636, 0.911622, -0.380241, -0.156081, 0.239826, 0.183677, 0.953282, 21.1366, 128.562, -37.6051)
+
+[node name="Sketchfab_Scene45" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(0.222341, 0.305298, 0.925937, 0.962857, 0.080477, -0.257741, -0.153204, 0.94885, -0.276065, 11.7001, 132.934, -26.0184)
+
+[node name="Sketchfab_Scene52" parent="." instance=ExtResource("6_6lxdm")]
+transform = Transform3D(-0.333616, 0.216511, 0.91751, 0.94222, 0.107904, 0.317139, -0.0303389, 0.970299, -0.24, 9.20539, 141.184, -37.1415)
+
 [node name="allhammers" type="Node3D" parent="."]
 transform = Transform3D(0.407705, 0, -0.314645, 0, 0.515, 0, 0.314645, 0, 0.407705, -11.7913, 103.93, -29.5799)
 
 [node name="hammer2" parent="allhammers" instance=ExtResource("7_aey5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1068, 0, 2.28054)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 47.6551, 0, 0.313887)
 script = ExtResource("8_nom21")
+angle = -90
 
 [node name="Area3D" type="Area3D" parent="allhammers/hammer2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37074, -12.6537, 0.181413)
@@ -478,7 +561,7 @@ shape = SubResource("BoxShape3D_nom21")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
 
 [node name="hammer3" parent="allhammers" instance=ExtResource("7_aey5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0088, 0, -2.44929)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 21.3486, -0.890717, -1.168)
 script = ExtResource("8_nom21")
 
 [node name="Area3D" type="Area3D" parent="allhammers/hammer3"]
@@ -496,8 +579,9 @@ shape = SubResource("BoxShape3D_nom21")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
 
 [node name="hammer4" parent="allhammers" instance=ExtResource("7_aey5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.999999, -0.00178077, -1.93715e-06, 0.00178077, 0.999996, 0.00230745, -2.17557e-06, -0.00230745, 0.999997, -1.58427, -0.927734, -2.05284)
 script = ExtResource("8_nom21")
+angle = -90
 
 [node name="Area3D" type="Area3D" parent="allhammers/hammer4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37074, -12.6537, 0.181413)
@@ -512,6 +596,39 @@ shape = SubResource("BoxShape3D_nom21")
 
 [node name="Node3D" type="Node3D" parent="allhammers/hammer4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
+
+[node name="Sketchfab_Scene38" parent="." instance=ExtResource("12_06bb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6113, 126.464, -56.9238)
+
+[node name="Sketchfab_Scene39" parent="." instance=ExtResource("12_06bb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1325, 127.888, -54.223)
+
+[node name="Sketchfab_Scene40" parent="." instance=ExtResource("13_t8s3x")]
+transform = Transform3D(1.77329, 16.3793, 0, -16.3793, 1.77329, 0, 0, 0, 16.475, 14.042, 130.12, -53.074)
+
+[node name="Sketchfab_Scene41" parent="." instance=ExtResource("13_t8s3x")]
+transform = Transform3D(-1.69723, -16.3873, 0, -16.1944, 1.67725, 2.52044, -2.50703, 0.259651, -16.2811, 15.7674, 129.893, -50.6501)
+
+[node name="Sketchfab_Scene42" parent="." instance=ExtResource("13_t8s3x")]
+transform = Transform3D(1.77329, 16.3793, 0, -16.3793, 1.77329, 0, 0, 0, 16.475, 16.2698, 129.811, -49.6236)
+
+[node name="Sketchfab_Scene43" parent="." instance=ExtResource("13_t8s3x")]
+transform = Transform3D(-1.69723, -16.3873, 0, -16.1944, 1.67725, 2.52044, -2.50703, 0.259651, -16.2811, 17.9952, 129.584, -47.1996)
+
+[node name="Sketchfab_Scene47" parent="." instance=ExtResource("15_8bmrq")]
+transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, -13.6354, 133.865, -22.7618)
+
+[node name="Sketchfab_Scene48" parent="." instance=ExtResource("15_8bmrq")]
+transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, -13.6354, 136.539, -28.5388)
+
+[node name="Sketchfab_Scene49" parent="." instance=ExtResource("15_8bmrq")]
+transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, -8.46416, 137.784, -28.5388)
+
+[node name="Sketchfab_Scene50" parent="." instance=ExtResource("15_8bmrq")]
+transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, -5.04289, 137.784, -34.9688)
+
+[node name="Sketchfab_Scene51" parent="." instance=ExtResource("15_8bmrq")]
+transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, 1.34437, 137.784, -32.0851)
 
 [connection signal="area_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]

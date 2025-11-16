@@ -8,11 +8,15 @@ var camerayrotation = 0
 var jump = false
 var onfloor = true
 var Force = Vector3.ZERO
+@onready var hammers = $"../allhammers"
 @onready var area = $Area3D
 @onready var charartermesh:AnimationPlayer = $AuxScene.get_node("AnimationPlayer")
 
 func _ready() -> void:
-
+	for i in hammers.get_children():
+		print("test")
+		var area1:Area3D = i.get_node("Area3D")
+		area1.body_entered.connect(onplayerented.bind(area1))
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	cameraxrotation = self.rotation_degrees.x
@@ -83,14 +87,15 @@ func _input(event: InputEvent) -> void:
  
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func onplayerented(body,area1) -> void:
+	print(body)
+
 	if body is CharacterBody3D:
-		var direction = (body.global_position -$"../hammer/Node3D".global_position)
+		var direction = (self.global_position -area1.global_position).normalized()
 		var force = direction *30
 		Force = force
 		clearknockback()
-
-		
+	
 func clearknockback()->void:
 	await get_tree().create_timer(1).timeout
 	print("cleared")

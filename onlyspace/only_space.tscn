@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=43 format=4 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://b3x7tn2aq5142" path="res://low_poly_moon.glb" id="16_mjoxr"]
 [ext_resource type="PackedScene" uid="uid://bexj71sdi80na" path="res://space_rocket.glb" id="17_8tup1"]
 [ext_resource type="Script" uid="uid://qbwqxmilfe73" path="res://rocketarea.gd" id="19_3vl1g"]
+[ext_resource type="AudioStream" uid="uid://bpbt1gkiaovx2" path="res://Untitled.mp3" id="20_3vl1g"]
+[ext_resource type="Script" uid="uid://beclg42njigo1" path="res://area_3d.gd" id="21_fehyw"]
 
 [sub_resource type="Environment" id="Environment_6lxdm"]
 background_mode = 1
@@ -33,11 +35,6 @@ height = 1.14352
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lxdm"]
 radius = 0.175311
 height = 1.14352
-
-[sub_resource type="BoxMesh" id="BoxMesh_m8ueq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ny3u2"]
-size = Vector3(1, 0.991333, 1.02429)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpqyr"]
 resource_name = "Toy_Planets"
@@ -210,6 +207,9 @@ radius = 0.483223
 [sub_resource type="BoxShape3D" id="BoxShape3D_a1dy4"]
 size = Vector3(4.32953, 8.36816, 3.43307)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vl1g"]
+size = Vector3(5230.25, 0.001, 4808.63)
+
 [node name="OnlySpace" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -221,7 +221,7 @@ light_energy = 4.928
 shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, -20.6911, 218.147, -1.73923)
+transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, -20.6911, -0.532959, -1.73923)
 script = ExtResource("1_e5x22")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -242,6 +242,14 @@ transform = Transform3D(-0.0020107, 0, 4.65774e-05, 0, 0.00201124, 0, -4.65774e-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285, 0.953, 0)
 shape = SubResource("CapsuleShape3D_6lxdm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CharacterBody3D"]
+transform = Transform3D(1.00562, 0, 0, 0, 1.00562, 0, 0, 0, 1.00562, 20.8074, 11.6124, 1.749)
+stream = ExtResource("20_3vl1g")
+volume_db = -11.714
+pitch_scale = 1.67
+autoplay = true
+parameters/looping = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -275,18 +283,6 @@ offset_bottom = 568.0
 theme_override_font_sizes/font_size = 201
 text = "Retry"
 script = ExtResource("4_oy41t")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.430054, 0, 0, 0, 1, 0.0257826, -11.7306, -8.33332)
-use_collision = true
-mesh = SubResource("BoxMesh_m8ueq")
-
-[node name="Area3D" type="Area3D" parent="CSGMesh3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0120636, 0.0151165, -0.00896168)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGMesh3D2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00912046, 0.0251713, 0.0314026)
-shape = SubResource("BoxShape3D_ny3u2")
 
 [node name="Toy_Planet_4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 894.509, 790.069, 20.3814)
@@ -604,7 +600,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
 
 [node name="hammer" parent="allhammers" instance=ExtResource("7_aey5m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.9387, 2.43199, 2.60323)
-visible = false
 script = ExtResource("8_nom21")
 
 [node name="Area3D" type="Area3D" parent="allhammers/hammer"]
@@ -711,6 +706,13 @@ script = ExtResource("19_3vl1g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0409, 213.117, -11.5487)
 shape = SubResource("BoxShape3D_a1dy4")
 
+[node name="deadpos" type="Area3D" parent="."]
+script = ExtResource("21_fehyw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deadpos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4527, -202.279, 185.25)
+shape = SubResource("BoxShape3D_3vl1g")
+
 [connection signal="area_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="area_entered" from="allhammers/hammer/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
@@ -721,3 +723,4 @@ shape = SubResource("BoxShape3D_a1dy4")
 [connection signal="body_entered" from="allhammers/hammer4/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Sketchfab_Scene61/rocketarea" to="Control/Label" method="_on_rocketarea_body_entered"]
 [connection signal="body_entered" from="Sketchfab_Scene61/rocketarea" to="Sketchfab_Scene61/rocketarea" method="_on_body_entered"]
+[connection signal="body_entered" from="deadpos" to="deadpos" method="_on_body_entered"]

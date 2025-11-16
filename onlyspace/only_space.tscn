@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=4 uid="uid://duffhw7kruvam"]
+[gd_scene load_steps=42 format=4 uid="uid://duffhw7kruvam"]
 
 [ext_resource type="Script" uid="uid://ultrf3qrqa4c" path="res://character_body_3d.gd" id="1_e5x22"]
 [ext_resource type="PackedScene" uid="uid://daj6s2hoxh00h" path="res://spacecharacter.tscn" id="2_6u3vt"]
 [ext_resource type="Script" uid="uid://bl80qiei345f2" path="res://timer.gd" id="3_m8ueq"]
+[ext_resource type="Script" uid="uid://bq81xwl6tma6s" path="res://button.gd" id="4_oy41t"]
 [ext_resource type="Texture2D" uid="uid://0s6jfewwkntq" path="res://toy_cartoon_planets_0.png" id="4_wahch"]
 [ext_resource type="Texture2D" uid="uid://cokapjwmhs3ii" path="res://toy_cartoon_planets_1.png" id="5_6lxdm"]
 [ext_resource type="PackedScene" uid="uid://b3571kn3lsn2c" path="res://objects/satelite.tscn" id="6_6lxdm"]
@@ -15,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cf33j3en6ay5h" path="res://pipe.tscn" id="13_t8s3x"]
 [ext_resource type="PackedScene" uid="uid://k86dn52pij0x" path="res://addons/godot_super-wakatime/trampoline.glb" id="14_cpmcf"]
 [ext_resource type="PackedScene" uid="uid://crdcetr8uml30" path="res://trash.tscn" id="15_8bmrq"]
+[ext_resource type="PackedScene" uid="uid://b3x7tn2aq5142" path="res://low_poly_moon.glb" id="16_mjoxr"]
+[ext_resource type="PackedScene" uid="uid://bexj71sdi80na" path="res://space_rocket.glb" id="17_8tup1"]
+[ext_resource type="Script" uid="uid://qbwqxmilfe73" path="res://rocketarea.gd" id="19_3vl1g"]
 
 [sub_resource type="Environment" id="Environment_6lxdm"]
 background_mode = 1
@@ -200,6 +204,12 @@ size = Vector3(1.14124, 10.9038, 0.658817)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nom21"]
 size = Vector3(1.22056, 1.95853, 4.01381)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_8tup1"]
+radius = 0.483223
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1dy4"]
+size = Vector3(4.32953, 8.36816, 3.43307)
+
 [node name="OnlySpace" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -211,7 +221,7 @@ light_energy = 4.928
 shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, -19.7575, 101.094, -40.3814)
+transform = Transform3D(0.994412, 0, 0, 0, 0.994412, 0, 0, 0, 0.994412, -20.6911, 218.147, -1.73923)
 script = ExtResource("1_e5x22")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -243,11 +253,28 @@ offset_bottom = 113.0
 layout_mode = 0
 offset_left = 373.0
 offset_top = -21.0
-offset_right = 613.0
-offset_bottom = 104.0
+offset_right = 600.0
+offset_bottom = 97.0
 theme_override_font_sizes/font_size = 86
 text = "timer"
 script = ExtResource("3_m8ueq")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 642.0
+
+[node name="Button" type="Button" parent="Control/TextureRect"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 261.0
+offset_top = 279.0
+offset_right = 847.0
+offset_bottom = 568.0
+theme_override_font_sizes/font_size = 201
+text = "Retry"
+script = ExtResource("4_oy41t")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.430054, 0, 0, 0, 1, 0.0257826, -11.7306, -8.33332)
@@ -320,7 +347,10 @@ transform = Transform3D(-0.36768, -0.358646, 0.858012, 0.913745, 0.0321772, 0.40
 transform = Transform3D(-0.0696661, -0.731825, -0.677923, 0.926699, 0.204095, -0.315554, 0.369292, -0.650214, 0.663963, -11.597, 22.1785, -11.5511)
 
 [node name="Sketchfab_Scene5" parent="." instance=ExtResource("9_onfdc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5086, -4.97944, 2.67951)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7052, -4.69132, 3.0433)
+
+[node name="Sketchfab_Scene57" parent="." instance=ExtResource("9_onfdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5086, 167.019, 2.67951)
 
 [node name="Sketchfab_Scene7" parent="." instance=ExtResource("10_uf1co")]
 transform = Transform3D(1, 0, 0, 0, 0.534013, -0.845476, 0, 0.845476, 0.534013, 2.35998, 13.7631, 14.4478)
@@ -481,6 +511,36 @@ shape = SubResource("CylinderShape3D_8bmrq")
 transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
 shape = SubResource("CylinderShape3D_8bmrq")
 
+[node name="Sketchfab_Scene59" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 18.009, 182.24, -4.14777)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene59"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene59/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene59" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene59/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Sketchfab_Scene60" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 3.36868, 195.159, -4.14777)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene60"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene60/StaticBody3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_Scene60" groups=["jumppad"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene60/Area3D"]
+transform = Transform3D(12.58, 0, 0, 0, 12.58, 0, 0, 0, 12.58, 0, -19.6909, 0)
+shape = SubResource("CylinderShape3D_8bmrq")
+
 [node name="Sketchfab_Scene36" parent="." groups=["jumppad"] instance=ExtResource("14_cpmcf")]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -16.0361, 102.831, -56.8577)
 
@@ -544,6 +604,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.84912, 0)
 
 [node name="hammer" parent="allhammers" instance=ExtResource("7_aey5m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.9387, 2.43199, 2.60323)
+visible = false
 script = ExtResource("8_nom21")
 
 [node name="Area3D" type="Area3D" parent="allhammers/hammer"]
@@ -630,6 +691,26 @@ transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.56
 [node name="Sketchfab_Scene51" parent="." instance=ExtResource("15_8bmrq")]
 transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.567873, -1.1361, 1.63454, 1.34437, 137.784, -32.0851)
 
+[node name="Sketchfab_Scene58" parent="." instance=ExtResource("16_mjoxr")]
+transform = Transform3D(2.055, 0, 0, 0, 2.055, 0, 0, 0, 2.055, -26.6458, 173.349, -12.5258)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene58"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene58/StaticBody3D"]
+transform = Transform3D(18.975, 0, 0, 0, 18.975, 0, 0, 0, 18.975, 0, 10.5529, 0)
+shape = SubResource("SphereShape3D_8tup1")
+
+[node name="Sketchfab_Scene61" parent="." instance=ExtResource("17_8tup1")]
+transform = Transform3D(0.288158, -0.160936, 1.70841, 0.0267672, 1.73254, 0.158695, -1.71576, 0, 0.289399, -24.758, 215.916, -11.5953)
+
+[node name="rocketarea" type="Area3D" parent="Sketchfab_Scene61"]
+transform = Transform3D(0.0951772, 0.00884105, -0.566708, -0.0531565, 0.572249, -7.07151e-10, 0.564279, 0.0524161, 0.0955869, -6.12366, -124.874, 3.76129)
+script = ExtResource("19_3vl1g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene61/rocketarea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0409, 213.117, -11.5487)
+shape = SubResource("BoxShape3D_a1dy4")
+
 [connection signal="area_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="allhammers/hammer2/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="area_entered" from="allhammers/hammer/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
@@ -638,3 +719,5 @@ transform = Transform3D(0.730806, -1.46206, -1.27012, 1.85158, 0.925504, 0, 0.56
 [connection signal="body_entered" from="allhammers/hammer3/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
 [connection signal="area_entered" from="allhammers/hammer4/Area3D" to="CharacterBody3D" method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="allhammers/hammer4/Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Sketchfab_Scene61/rocketarea" to="Control/Label" method="_on_rocketarea_body_entered"]
+[connection signal="body_entered" from="Sketchfab_Scene61/rocketarea" to="Sketchfab_Scene61/rocketarea" method="_on_body_entered"]

@@ -20,3 +20,7 @@ func rotateobject():
 		number += 1
 		self.rotation_degrees.x= sin(number * time) *angle
 		await  get_tree().create_timer(0.01).timeout
+
+
+func _on_rocketarea_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

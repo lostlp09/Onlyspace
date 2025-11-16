@@ -100,3 +100,7 @@ func clearknockback()->void:
 	await get_tree().create_timer(1).timeout
 	print("cleared")
 	Force = Vector3.ZERO
+
+
+func _on_rocketarea_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

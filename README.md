@@ -1,4 +1,4 @@
-# ONLY Space:
+# Only Space:
 
 
 Only Space is a game ,where you goal to climb up until you reach the moon,because there is a rocket ship which brings you back to earth.
